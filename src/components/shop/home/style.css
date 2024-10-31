@@ -1,0 +1,97 @@
+.slider {
+  -webkit-appearance: none;
+  height: 12px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 75%;
+  background: #b7791f;
+  cursor: pointer;
+}
+.image-intro{
+  border: 1px solid rgb(240, 222, 222);
+  box-shadow: 1px 3px 6px #4b4848cc;
+  border-radius: 10px;
+}
+
+.slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 75%;
+  background: #b7791f;
+  cursor: pointer;
+}
+/* about shop */
+.about-shop{
+  margin: 100px 50px 20px 50px;
+}
+.hearder-about-shop{
+  /* font-size: 25px; */
+  /* font-weight: 600; */
+  color: #222121;
+
+}
+.content-about-shop-item{
+  padding: 5px;
+}
+.fix-our-shop-image{
+  width:90px;
+  height: 80px;
+  object-fit: fill;
+}
+.fix-image-slide{
+  width:100%;
+  height:auto;
+  object-fit: fill;
+}
+
+.select-curtom{
+}
+.about-us-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.about-us-container {
+  max-width: 600px;
+}
+
+.about-us-container h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.about-us-container p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.btn-contact {
+  display: inline-block;
+  background-color: #b7791f; /* Màu giống với slider thumb */
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.btn-contact:hover {
+  background-color: #8f5e18; /* Màu hover cho button */
+}
+
