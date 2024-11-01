@@ -7,7 +7,7 @@ const ProductCategory = (props) => {
   return (
     <Fragment>
       <div className="flex justify-between font-medium">
-        {data.categories && data.categories.map((category) => (
+        {data.categories && data.categories.map((category)  => (
           <div
             key={category.id} // Đảm bảo `category.id` là duy nhất
             onClick={(e) =>
