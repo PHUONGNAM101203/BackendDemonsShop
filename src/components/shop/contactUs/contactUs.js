@@ -1,6 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { wishListProducts } from "./FetchApi";
+import React, { Fragment, useState } from "react";
 import { notifyEvent } from "./FetchApi";
 const apiURL = process.env.REACT_APP_API_URL;
 

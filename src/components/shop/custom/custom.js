@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef, useEffect } from "react";
+import React, { Fragment, useState,  useEffect } from "react";
 import { isAdmin } from "../auth/fetchApi"; // Giả sử bạn có hàm isAdmin
 
 const Custom = (props) => {
@@ -10,7 +10,7 @@ const Custom = (props) => {
   });
 
   const [comments, setComments] = useState([]);
-  const tableRef = useRef(null);
+
 
   // Hàm lưu comments vào LocalStorage
   const saveCommentsToLocalStorage = (newComments) => {

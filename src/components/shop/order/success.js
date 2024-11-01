@@ -1,27 +1,24 @@
-import React, { Fragment, useContext, useEffect } from "react";
+import React, { Fragment, useContext, useEffect, useCallback } from "react";
 import { fetchData } from "./Action";
 import { cartListProduct } from "../partials/FetchApi";
 import { LayoutContext } from "../index";
 import { createOrder, sendEmailNotify } from "./FetchApi";
 import "./style.css";
+
 export const totalCost = () => {
   let totalCost = 0;
   let carts = JSON.parse(localStorage.getItem("cart"));
   carts.forEach((item) => {
-    totalCost += item.quantitiy * item.price;
+    totalCost += item.quantity * item.price;
   });
   return totalCost;
 };
+
 export const PayoutSuccessComponent = (props) => {
   const { data, dispatch } = useContext(LayoutContext);
 
-  useEffect(() => {
-    fetchData(cartListProduct, dispatch).then((cartListProduct) => {
-      thisCreateOrder(data);
-    });
-  }, []);
-
-  async function thisCreateOrder(cartListProduct) {
+  // Define thisCreateOrder with useCallback
+  const thisCreateOrder = useCallback(async (cartListProduct) => {
     const urlParams = new URLSearchParams(window.location.search);
     const orderCode = urlParams.get("orderCode");
     const address = urlParams.get("address");
@@ -54,18 +51,16 @@ export const PayoutSuccessComponent = (props) => {
       console.log("error", error);
     }
     console.log("order", orderData);
-  }
+  }, [dispatch]);
+
+  useEffect(() => {
+    fetchData(cartListProduct, dispatch).then((cartListProduct) => {
+      thisCreateOrder(data);
+    });
+  }, [dispatch, data, thisCreateOrder]);
+
   return (
     <Fragment>
-      {/* <div className="text-2xl text-center">Payment Success</div>
-      <div
-        onClick={() => props.history.push("/")}
-        className="w-full px-4 py-2 text-center text-white font-semibold cursor-pointer"
-        style={{ background: "#303031" }}
-      >
-        Continue Shopping
-      </div> */}
-
       <div className="page-checkout-container">
         <img
           className="img-page-checkout"
@@ -74,8 +69,8 @@ export const PayoutSuccessComponent = (props) => {
         />
         <h4 className="content-page-checkout">Thanh toán của bạn thành công</h4>
         <p className="subcontent-page-checkout">
-        Cảm ơn bạn đã thanh toán. Biên nhận thanh toán tự động sẽ được gửi đến
-        email đã đăng ký của bạn
+          Cảm ơn bạn đã thanh toán. Biên nhận thanh toán tự động sẽ được gửi đến
+          email đã đăng ký của bạn
         </p>
         <button
           onClick={() => props.history.push("/")}

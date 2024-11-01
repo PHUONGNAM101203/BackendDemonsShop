@@ -1,4 +1,4 @@
-import { createOrder, getCheckoutUrl } from "./FetchApi";
+import { getCheckoutUrl } from "./FetchApi";
 
 export const fetchData = async (cartListProduct, dispatch) => {
   dispatch({ type: "loading", payload: true });

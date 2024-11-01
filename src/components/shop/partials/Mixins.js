@@ -1,9 +1,9 @@
 export const subTotal = (id, price) => {
   let subTotalCost = 0;
-  let carts = JSON.parse(localStorage.getItem("cart"));
+  let carts = JSON.parse(localStorage.getItem("cart")) || []; // Thêm kiểm tra null
   carts.forEach((item) => {
     if (item.id === id) {
-      subTotalCost = item.quantitiy * price;
+      subTotalCost = item.quantity * price;
     }
   });
   return subTotalCost;
@@ -11,10 +11,10 @@ export const subTotal = (id, price) => {
 
 export const quantity = (id) => {
   let product = 0;
-  let carts = JSON.parse(localStorage.getItem("cart"));
+  let carts = JSON.parse(localStorage.getItem("cart")) || []; // Thêm kiểm tra null
   carts.forEach((item) => {
     if (item.id === id) {
-      product = item.quantitiy;
+      product = item.quantity;
     }
   });
   return product;
@@ -22,9 +22,9 @@ export const quantity = (id) => {
 
 export const totalCost = () => {
   let totalCost = 0;
-  let carts = JSON.parse(localStorage.getItem("cart"));
+  let carts = JSON.parse(localStorage.getItem("cart")) || []; // Thêm kiểm tra null
   carts.forEach((item) => {
-    totalCost += item.quantitiy * item.price;
+    totalCost += item.quantity * item.price;
   });
   return totalCost;
 };

@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { LayoutContext } from "../layout";
 import { subTotal, quantity, totalCost } from "../partials/Mixins";
-
 import { cartListProduct } from "../partials/FetchApi";
 import { fetchData, pay } from "./Action";
 
@@ -13,7 +12,7 @@ export const CheckoutComponent = (props) => {
   const { data, dispatch } = useContext(LayoutContext);
 
   const [state, setState] = useState({
-    name:"",
+    name: "",
     address: "",
     phone: "",
     error: false,
@@ -24,7 +23,7 @@ export const CheckoutComponent = (props) => {
 
   useEffect(() => {
     fetchData(cartListProduct, dispatch);
-  }, []);
+  }, [dispatch]); // Thêm dispatch vào mảng phụ thuộc
 
   if (data.loading) {
     return (
@@ -43,13 +42,14 @@ export const CheckoutComponent = (props) => {
             d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
           ></path>
         </svg>
-        Please wait untill finish
+        Please wait until finish
       </div>
     );
   }
+
   return (
     <Fragment>
-      <section className="m-26  border rounded shadow-lg">
+      <section className="m-26 border rounded shadow-lg">
         <div className="text-2xl mx-2">Order</div>
         {/* Product List */}
         <div className="flex flex-col md:flex md:space-x-2 md:flex-row">
@@ -191,7 +191,7 @@ const CheckoutProducts = ({ products }) => {
                     Price : {product.pPrice}₫{" "}
                   </div>
                   <div className="md:ml-6 font-semibold text-gray-600 text-sm">
-                    Quantitiy : {quantity(product._id)}
+                    Quantity : {quantity(product._id)}
                   </div>
                   <div className="font-semibold text-gray-600 text-sm">
                     Subtotal : {subTotal(product._id, product.pPrice)}₫

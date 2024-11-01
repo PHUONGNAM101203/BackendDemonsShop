@@ -32,17 +32,17 @@ const CategoryList = () => {
       <hr />
       <div className="py-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {categories && categories.length > 0 ? (
-          categories.map((item, index) => {
+          categories.map((item) => {
             return (
-              <Fragment key={index}>
+              <Fragment key={item._id}>
                 <div
                   onClick={(e) =>
                     history.push(`/products/category/${item._id}`)
                   }
-                  className="col-span-1 m-2 flex flex-col items-center justify-center space-y-2 cursor-pointer border shadow-lg rounded  "
+                  className="col-span-1 m-2 flex flex-col items-center justify-center space-y-2 cursor-pointer border shadow-lg rounded"
                 >
                   <img
-                    className="fix-image-categories object-center cursor-pointer  rounded-top"
+                    className="fix-image-categories object-center cursor-pointer rounded-top"
                     src={`${apiURL}/uploads/categories/${item.cImage}`}
                     alt="pic"
                   />
@@ -54,9 +54,14 @@ const CategoryList = () => {
         ) : (
           <div className="col-span-2 md:col-span-3 lg:col-span-4 flex items-center justify-center text-2xl">
             <div className="flex flex-col items-center justify-center">
-              <img className="w-75" src="../../image/NoFoundProductInWishlist.gif" alt="Girl in a jacket"></img>
+              <img
+                className="w-75"
+                src="../../image/NoFoundProductInWishlist.gif"
+                alt="No categories found"
+              />
               No category found
-            </div></div>
+            </div>
+          </div>
         )}
       </div>
     </div>
@@ -188,8 +193,9 @@ const Search = () => {
 
   return (
     <div
-      className={`${data.searchDropdown ? "" : "hidden"
-        }  flex items-center justify-between  border-2 mt-3`}
+      className={`${
+        data.searchDropdown ? "" : "hidden"
+      } flex items-center justify-between  border-2 mt-3`}
     >
       <input
         value={search}
